@@ -19,8 +19,8 @@
         }
         
         header {
-            padding: 2rem 2rem 6rem;
-            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+            padding: 2rem 2rem 3rem;
+            background: linear-gradient(180deg, #e2e8f0 0%, #ffffff 100%);
             position: relative;
             overflow: hidden;
         }
@@ -28,22 +28,22 @@
         header::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(15, 23, 42, 0.03) 0%, transparent 70%);
+            top: -30%;
+            right: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(15, 23, 42, 0.08) 0%, transparent 60%);
             border-radius: 50%;
         }
         
         header::after {
             content: '';
             position: absolute;
-            bottom: -30%;
-            left: -5%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(71, 85, 105, 0.03) 0%, transparent 70%);
+            bottom: -20%;
+            left: -3%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(71, 85, 105, 0.06) 0%, transparent 60%);
             border-radius: 50%;
         }
         
@@ -84,7 +84,7 @@
         .hero {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 6rem 0 4rem;
+            padding: 3rem 0 2rem;
             position: relative;
             z-index: 10;
         }
@@ -110,22 +110,25 @@
         
         .hero-accent {
             position: absolute;
-            right: 10%;
+            right: 8%;
             top: 50%;
             transform: translateY(-50%);
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.05) 0%, rgba(71, 85, 105, 0.02) 100%);
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.12) 0%, rgba(71, 85, 105, 0.08) 100%);
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            animation: morph 8s ease-in-out infinite;
+            animation: morph 6s ease-in-out infinite;
+            filter: blur(40px);
         }
         
         @keyframes morph {
             0%, 100% {
                 border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+                transform: translateY(-50%) rotate(0deg);
             }
             50% {
                 border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+                transform: translateY(-50%) rotate(10deg);
             }
         }
         
@@ -304,6 +307,12 @@
                 font-size: 2.5rem;
             }
             
+            .hero-accent {
+                width: 250px;
+                height: 250px;
+                right: -10%;
+            }
+            
             .products {
                 grid-template-columns: 1fr;
             }
@@ -333,6 +342,7 @@
         <div class="hero">
             <h1>Building mobile experiences that connect people</h1>
             <p>We develop innovative iOS and Android applications focused on bringing communities together through technology.</p>
+            <div class="hero-accent"></div>
         </div>
     </header>
 
@@ -343,10 +353,6 @@
                 <div class="product-card">
                     <h3>Maisonly</h3>
                     <p>A marketplace connecting talented student chefs with food enthusiasts. Discover authentic home-cooked meals and support the next generation of culinary talent.</p>
-                    <div class="product-links">
-                        <a href="[APP_STORE_URL]" target="_blank">App Store</a>
-                        <a href="[PLAY_STORE_URL]" target="_blank">Google Play</a>
-                    </div>
                     <span class="status-badge">Coming Soon</span>
                 </div>
                 
