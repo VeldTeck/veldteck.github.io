@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Veldtech LLC — Flagship: Maisonly</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#4f8dfd; --bg2:#56d8b2; --bg3:#0f1216;
+      --text:#e8edf2; --muted:#b7c0cc; --accent:#56d8b2;
+      --surface:rgba(21,26,33,0.8); --border:#263042; --radius:14px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);
+      background:linear-gradient(270deg,var(--bg1),var(--bg2),var(--bg3));
+      background-size:600% 600%; animation:gradientShift 20s ease infinite; min-height:100vh; position:relative; overflow-x:hidden;
+    }
+    @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .orb{position:fixed;left:50%;top:50%;width:240px;height:240px;margin-left:-120px;margin-top:-120px;border-radius:50%;background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.22), rgba(255,255,255,0.02) 40%);filter:blur(30px) saturate(120%);mix-blend-mode:overlay;pointer-events:none;z-index:0;transition:transform .12s linear}
+
+    .container{max-width:1100px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+    header{position:sticky;top:0;background:var(--surface);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:10}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{font-weight:700;color:var(--text);text-decoration:none}
+    .nav-links a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    .nav-links a:hover{color:var(--accent)}
+
+    main{padding:72px 0}
+    h1{margin:0 0 12px;font-size:clamp(24px,3.6vw,36px)}
+    p.lead{color:var(--muted);max-width:780px}
+    .card{background:rgba(15,18,22,0.7);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-top:18px;color:var(--muted)}
+    .actions{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
+    .btn{display:inline-block;padding:11px 16px;border-radius:12px;text-decoration:none;font-weight:700}
+    .btn-primary{background:linear-gradient(135deg,#4f8dfd,#7aa8ff);color:white;border:none}
+    .btn-secondary{background:rgba(15,18,22,0.65);color:var(--text);border:1px solid var(--border)}
+    footer{padding:30px 0;text-align:center;color:var(--muted);border-top:1px solid var(--border);position:relative;z-index:1}
+    a.link{color:var(--accent);text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="orb" id="orb"></div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html">Veldtech LLC</a>
+      <nav class="nav-links">
+        <a href="index.html">About</a>
+        <a href="flagship.html">Flagship</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h1>Maisonly.io — Marketplace for private chef experiences</h1>
+      <p class="lead">Maisonly connects culinary students with people looking for private chef experiences. Students gain real-world opportunities and portfolio-building gigs; hosts enjoy curated in-home dining without restaurant overhead.</p>
+
+      <div class="card">
+        <strong>What Maisonly enables</strong>
+        <ul style="color:var(--muted);margin-top:8px">
+          <li><strong>Students:</strong> real-world gigs, income, and portfolio work.</li>
+          <li><strong>Hosts:</strong> memorable private dining without restaurant overhead.</li>
+          <li><strong>Community:</strong> local culinary talent on display.</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://maisonly.io" target="_blank" rel="noopener">Visit Maisonly.io</a>
+          <a class="btn btn-secondary" href="index.html">Back to About</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Veldtech LLC • Flagship: Maisonly.io</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const orb = document.getElementById('orb');
+    window.addEventListener('mousemove', e => {
+      const cx = innerWidth/2, cy = innerHeight/2;
+      const dx = (e.clientX - cx) / cx, dy = (e.clientY - cy) / cy;
+      const tx = dx * 18, ty = dy * 18, rx = dy * -6, ry = dx * 6, scale = 1 + Math.hypot(dx,dy) * 0.06;
+      orb.style.transform = `translate(-50%,-50%) translate(${tx}px,${ty}px) rotateX(${rx}deg) rotateY(${ry}deg) scale(${scale})`;
+    });
+  </script>
+</body>
+</html>
