@@ -1,413 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VeldTech LLC - Mobile Software Solutions</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #0f172a;
-            background: #ffffff;
-        }
-        
-        header {
-            padding: 2rem 2rem 3rem;
-            background: linear-gradient(180deg, #94a3b8 0%, #e2e8f0 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            right: 5%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(15, 23, 42, 0.25) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
-        }
-        
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -15%;
-            left: 5%;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(71, 85, 105, 0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 10s ease-in-out infinite reverse;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0);
-            }
-            50% {
-                transform: translate(20px, -20px);
-            }
-        }
-        
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            color: #64748b;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-        
-        .nav-links a:hover {
-            color: #0f172a;
-        }
-        
-        .hero {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 3rem 0 2rem;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #0f172a 0%, #475569 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            color: #64748b;
-            max-width: 600px;
-            line-height: 1.7;
-        }
-        
-        .hero-accent {
-            position: absolute;
-            left: 0;
-            top: 50%;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.3) 0%, rgba(71, 85, 105, 0.25) 100%);
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            animation: morphTravel 12s ease-in-out infinite;
-            filter: blur(30px);
-        }
-        
-        @keyframes morphTravel {
-            0% {
-                left: -10%;
-                top: 20%;
-                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-                transform: rotate(0deg) scale(1);
-            }
-            25% {
-                left: 30%;
-                top: 60%;
-                border-radius: 50% 50% 30% 70% / 50% 70% 30% 50%;
-                transform: rotate(90deg) scale(1.2);
-            }
-            50% {
-                left: 70%;
-                top: 30%;
-                border-radius: 70% 30% 50% 50% / 70% 30% 70% 30%;
-                transform: rotate(180deg) scale(0.9);
-            }
-            75% {
-                left: 50%;
-                top: 70%;
-                border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
-                transform: rotate(270deg) scale(1.1);
-            }
-            100% {
-                left: -10%;
-                top: 20%;
-                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-                transform: rotate(360deg) scale(1);
-            }
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        section {
-            margin: 8rem 0;
-        }
-        
-        h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            letter-spacing: -1px;
-        }
-        
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-        }
-        
-        .product-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #0f172a, #475569);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        
-        .product-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .product-card:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-        }
-        
-        .product-card h3 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-        }
-        
-        .product-card p {
-            color: #64748b;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-        
-        .status-badge {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            background: #f1f5f9;
-            color: #64748b;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-top: 1rem;
-        }
-        
-        .product-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .product-links a {
-            padding: 0.75rem 1.5rem;
-            background: #0f172a;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        
-        .product-links a:hover {
-            background: #1e293b;
-            transform: translateY(-1px);
-        }
-        
-        .contact-section {
-            background: #f8fafc;
-            border-radius: 24px;
-            padding: 4rem;
-            margin-top: 4rem;
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-        
-        .contact-item h3 {
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #64748b;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-        }
-        
-        .contact-item p {
-            font-size: 1.125rem;
-            color: #0f172a;
-            font-weight: 500;
-        }
-        
-        .contact-item a {
-            color: #0f172a;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .contact-item a:hover {
-            color: #475569;
-        }
-        
-        footer {
-            background: #0f172a;
-            color: #94a3b8;
-            padding: 3rem 2rem;
-            margin-top: 8rem;
-        }
-        
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-        
-        .footer-links a:hover {
-            color: #ffffff;
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-accent {
-                width: 250px;
-                height: 250px;
-                right: -10%;
-            }
-            
-            .products {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 1.5rem;
-                text-align: center;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Veldtech LLC — About</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#4f8dfd; --bg2:#56d8b2; --bg3:#0f1216;
+      --text:#e8edf2; --muted:#b7c0cc; --accent:#56d8b2;
+      --surface:rgba(21,26,33,0.8); --border:#263042; --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(270deg,var(--bg1),var(--bg2),var(--bg3));
+      background-size:600% 600%; animation:gradientShift 20s ease infinite;
+      min-height:100vh; position:relative; overflow-x:hidden;
+    }
+    @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    /* center orb */
+    .orb{
+      position:fixed; left:50%; top:50%; width:240px; height:240px; margin-left:-120px; margin-top:-120px;
+      border-radius:50%;
+      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.22), rgba(255,255,255,0.02) 40%);
+      filter: blur(30px) saturate(120%);
+      mix-blend-mode: overlay;
+      pointer-events:none; z-index:0; transition:transform .12s linear;
+    }
+
+    /* layout */
+    .container{max-width:1100px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+    header{position:sticky;top:0;background:var(--surface);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:10}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{font-weight:700;color:var(--text);text-decoration:none}
+    .nav-links a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    .nav-links a:hover{color:var(--accent)}
+
+    .hero{padding:80px 0;text-align:center}
+    .eyebrow{display:inline-block;padding:8px 14px;border-radius:999px;background:rgba(0,0,0,0.18);color:var(--muted);font-weight:700;margin-bottom:18px}
+    h1{font-size:clamp(28px,4vw,44px);margin:12px 0}
+    p.lead{max-width:760px;margin:0 auto 26px;color:var(--muted);line-height:1.6}
+
+    .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{display:inline-block;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:700;}
+    .btn-primary{background:linear-gradient(135deg,#4f8dfd,#7aa8ff);color:white;border:none}
+    .btn-secondary{background:rgba(15,18,22,0.65);color:var(--text);border:1px solid var(--border)}
+
+    section{padding:60px 0}
+    h2{font-size:26px;margin-bottom:10px}
+    .card{background:rgba(15,18,22,0.7);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:18px;color:var(--muted)}
+
+    footer{padding:30px 0;text-align:center;color:var(--muted);border-top:1px solid var(--border);background:rgba(0,0,0,0.06);position:relative;z-index:1}
+    a.link{color:var(--accent);text-decoration:none}
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">VeldTech</div>
-            <ul class="nav-links">
-                <li><a href="#products">Products</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        
-        <div class="hero">
-            <h1>Building mobile experiences that connect people</h1>
-            <p>We develop innovative iOS and Android applications focused on bringing communities together through technology.</p>
-            <div class="hero-accent"></div>
-        </div>
-    </header>
+  <div class="orb" id="orb"></div>
 
-    <div class="container">
-        <section id="products">
-            <h2>Our Products</h2>
-            <div class="products">
-                <div class="product-card">
-                    <h3>Maisonly</h3>
-                    <p>A marketplace connecting talented student chefs with food enthusiasts. Discover authentic home-cooked meals and support the next generation of culinary talent.</p>
-                    <span class="status-badge">Coming Soon</span>
-                </div>
-                
-                <div class="product-card">
-                    <h3>Memory Map</h3>
-                    <p>Share meaningful moments tied to places that matter. A location-based platform for preserving memories and connecting with your community through shared experiences.</p>
-                    <div class="product-links">
-                        <a href="https://apps.apple.com/us/app/veldtech-memory-map/id6749919375" target="_blank">App Store</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.veldtech.memorymap&utm_source=na_Med" target="_blank">Google Play</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html">Veldtech LLC</a>
+      <nav class="nav-links">
+        <a href="index.html">About</a>
+        <a href="flagship.html">Flagship</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 VeldTech LLC. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="#privacy">Privacy Policy</a>
-                <a href="#terms">Terms of Service</a>
-            </div>
-        </div>
-    </footer>
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow">Innovation studio • Digital products</div>
+      <h1>Building digital products that connect people and experiences.</h1>
+      <p class="lead">Veldtech is the parent company behind consumer products that foster real-world connection. Our flagship marketplace, Maisonly.io, connects culinary students with people seeking private chef experiences. We also publish experiments like Memory Map to explore place-based storytelling.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://maisonly.io">Explore Maisonly.io</a>
+        <a class="btn btn-secondary" href="projects.html">See Projects</a>
+      </div>
+    </section>
+
+    <!-- <section id="about">
+      <h2>About Veldtech</h2>
+      <div class="card">
+        <strong>Mission</strong>
+        <p>We design, build, and launch focused products under a single umbrella LLC. Our approach: validate quickly, prioritize utility, and champion ideas that connect people with places and each other.</p>
+      </div>
+
+      <div class="card">
+        <strong>Approach</strong>
+        <p>Flagship projects receive dedicated resources; experiments remain visible as proofs of concept and values-driven work.</p>
+      </div>
+    </section> -->
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Veldtech LLC • Flagship: <a class="link" href="https://maisonly.io">Maisonly.io</a> • Past project: Memory Map</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Orb reacts to cursor position (centered element moves subtly / tilts)
+    const orb = document.getElementById('orb');
+    window.addEventListener('mousemove', e => {
+      const cx = window.innerWidth/2, cy = window.innerHeight/2;
+      const dx = (e.clientX - cx) / cx; // -1..1
+      const dy = (e.clientY - cy) / cy;
+      const tx = dx * 18; // translate range
+      const ty = dy * 18;
+      const rx = dy * -6; // rotateX
+      const ry = dx * 6;  // rotateY
+      const scale = 1 + Math.hypot(dx,dy) * 0.06;
+      orb.style.transform = `translate(-50%,-50%) translate(${tx}px,${ty}px) rotateX(${rx}deg) rotateY(${ry}deg) scale(${scale})`;
+    });
+    // subtle idle breathing when no movement
+    let idleTimer;
+    const resetIdle = () => {
+      clearTimeout(idleTimer);
+      orb.style.transition = 'transform .12s linear';
+      idleTimer = setTimeout(()=>{ orb.style.transform = 'translate(-50%,-50%) scale(1)'; orb.style.transition = 'transform 3s ease-in-out'; }, 1400);
+    };
+    window.addEventListener('mousemove', resetIdle);
+    resetIdle();
+  </script>
 </body>
 </html>
