@@ -5,59 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Veldtech LLC</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg1:#4f8dfd; --bg2:#56d8b2; --bg3:#0f1216;
-      --text:#e8edf2; --muted:#b7c0cc; --accent:#56d8b2;
-      --surface:rgba(21,26,33,0.8); --border:#263042; --radius:14px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-      background:linear-gradient(270deg,var(--bg1),var(--bg2),var(--bg3));
-      background-size:600% 600%; animation:gradientShift 20s ease infinite;
-      min-height:100vh; position:relative; overflow-x:hidden;
-    }
-    @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    /* center orb */
-    .orb{
-      position:fixed; left:50%; top:50%; width:240px; height:240px; margin-left:-120px; margin-top:-120px;
-      border-radius:50%;
-      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.22), rgba(255,255,255,0.02) 40%);
-      filter: blur(30px) saturate(120%);
-      mix-blend-mode: overlay;
-      pointer-events:none; z-index:0; transition:transform .12s linear;
-    }
-
-    /* layout */
-    .container{max-width:1100px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-    header{position:sticky;top:0;background:var(--surface);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:10}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{font-weight:700;color:var(--text);text-decoration:none}
-    .nav-links a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
-    .nav-links a:hover{color:var(--accent)}
-
-    .hero{padding:80px 0;text-align:center}
-    .eyebrow{display:inline-block;padding:8px 14px;border-radius:999px;background:rgba(0,0,0,0.18);color:var(--muted);font-weight:700;margin-bottom:18px}
-    h1{font-size:clamp(28px,4vw,44px);margin:12px 0}
-    p.lead{max-width:760px;margin:0 auto 26px;color:var(--muted);line-height:1.6}
-
-    .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    .btn{display:inline-block;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:700;}
-    .btn-primary{background:linear-gradient(135deg,#4f8dfd,#7aa8ff);color:white;border:none}
-    .btn-secondary{background:rgba(15,18,22,0.65);color:var(--text);border:1px solid var(--border)}
-
-    section{padding:60px 0}
-    h2{font-size:26px;margin-bottom:10px}
-    .card{background:rgba(15,18,22,0.7);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:18px;color:var(--muted)}
-
-    footer {
-      flex-shrink: 0;
-    }
-    a.link{color:var(--accent);text-decoration:none}
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="orb" id="orb"></div>
@@ -84,19 +32,6 @@
         <a class="btn btn-secondary" href="projects.html">See Projects</a>
       </div>
     </section>
-
-    <!-- <section id="about">
-      <h2>About Veldtech</h2>
-      <div class="card">
-        <strong>Mission</strong>
-        <p>We design, build, and launch focused products under a single umbrella LLC. Our approach: validate quickly, prioritize utility, and champion ideas that connect people with places and each other.</p>
-      </div>
-
-      <div class="card">
-        <strong>Approach</strong>
-        <p>Flagship projects receive dedicated resources; experiments remain visible as proofs of concept and values-driven work.</p>
-      </div>
-    </section> -->
   </main>
 
   <footer>
@@ -107,25 +42,30 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    // Orb reacts to cursor position (centered element moves subtly / tilts)
+    
+    // Orb reacts to cursor position
     const orb = document.getElementById('orb');
     window.addEventListener('mousemove', e => {
       const cx = window.innerWidth/2, cy = window.innerHeight/2;
-      const dx = (e.clientX - cx) / cx; // -1..1
+      const dx = (e.clientX - cx) / cx;
       const dy = (e.clientY - cy) / cy;
-      const tx = dx * 18; // translate range
+      const tx = dx * 18;
       const ty = dy * 18;
-      const rx = dy * -6; // rotateX
-      const ry = dx * 6;  // rotateY
+      const rx = dy * -6;
+      const ry = dx * 6;
       const scale = 1 + Math.hypot(dx,dy) * 0.06;
       orb.style.transform = `translate(-50%,-50%) translate(${tx}px,${ty}px) rotateX(${rx}deg) rotateY(${ry}deg) scale(${scale})`;
     });
-    // subtle idle breathing when no movement
+    
+    // Subtle idle breathing when no movement
     let idleTimer;
     const resetIdle = () => {
       clearTimeout(idleTimer);
       orb.style.transition = 'transform .12s linear';
-      idleTimer = setTimeout(()=>{ orb.style.transform = 'translate(-50%,-50%) scale(1)'; orb.style.transition = 'transform 3s ease-in-out'; }, 1400);
+      idleTimer = setTimeout(() => {
+        orb.style.transform = 'translate(-50%,-50%) scale(1)';
+        orb.style.transition = 'transform 3s ease-in-out';
+      }, 1400);
     };
     window.addEventListener('mousemove', resetIdle);
     resetIdle();
