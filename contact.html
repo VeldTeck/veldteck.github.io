@@ -5,34 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Veldtech LLC — Contact</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg1:#4f8dfd; --bg2:#56d8b2; --bg3:#0f1216;
-      --text:#e8edf2; --muted:#b7c0cc; --accent:#56d8b2;
-      --surface:rgba(21,26,33,0.8); --border:#263042; --radius:14px;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:var(--text);
-      background:linear-gradient(270deg,var(--bg1),var(--bg2),var(--bg3));background-size:600% 600%;animation:gradientShift 20s ease infinite;min-height:100vh;position:relative;overflow-x:hidden}
-    @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    .orb{position:fixed;left:50%;top:50%;width:240px;height:240px;margin-left:-120px;margin-top:-120px;border-radius:50%;background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.22), rgba(255,255,255,0.02) 40%);filter:blur(30px);mix-blend-mode:overlay;pointer-events:none;z-index:0;transition:transform .12s linear}
-
-    .container{max-width:1100px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-    header{position:sticky;top:0;background:var(--surface);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:10}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{font-weight:700;color:var(--text);text-decoration:none}
-    .nav-links a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
-    .nav-links a:hover{color:var(--accent)}
-
-    main{padding:72px 0;text-align:center}
-    h1{margin:0 0 12px;font-size:clamp(22px,3.2vw,34px)}
-    p.lead{color:var(--muted);max-width:780px;margin:0 auto 18px}
-    .card{display:inline-block;background:rgba(15,18,22,0.7);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-top:18px;color:var(--muted)}
-    .btn{display:inline-block;padding:11px 16px;border-radius:12px;text-decoration:none;font-weight:700;margin-top:12px}
-    .btn-primary{background:linear-gradient(135deg,#4f8dfd,#7aa8ff);color:white;border:none}
-    footer{padding:30px 0;text-align:center;color:var(--muted);border-top:1px solid var(--border);position:relative;z-index:1}
-    a.link{color:var(--accent);text-decoration:none}
-  </style>
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
   <div class="orb" id="orb"></div>
